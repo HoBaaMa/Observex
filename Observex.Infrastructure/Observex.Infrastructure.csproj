@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SafetyVision.Core\Observex.Core.csproj" />
+    <ProjectReference Include="..\Observex.Core\Observex.Core.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
