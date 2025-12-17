@@ -1,0 +1,180 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+
+actor "Safety Officer" as User
+participant "Website UI" as UI
+participant "API Controller" as API
+participant "Application Service" as Service
+database "Database (SQL)" as DB
+
+'=== AUTHENTICATION ===
+== Authentication ==
+
+User -> UI : Login (Username, Password)
+activate UI
+    UI -> API : POST /Auth/Login
+    activate API
+        API -> Service : Verify Credentials
+        activate Service
+            Service -> DB : Query User (By Email/User)
+            activate DB
+            DB --> Service : Return User Entity
+            deactivate DB
+            
+            alt Credentials Valid
+                Service --> API : Result.Success (User Data)
+                API --> UI : 200 OK (JWT Token)
+                UI --> User : Show Dashboard
+            else Invalid Password/User
+                Service --> API : Result.Failure
+                API --> UI : 401 Unauthorized
+                deactivate Service
+                UI --> User : Display Login Error
+            end
+    deactivate API
+deactivate UI
+
+'=== MANAGE DEPARTMENTS ===
+== Manage Departments ==
+
+User -> UI : Create Department (Name)
+activate UI
+    UI -> API : POST /api/v1/Departments
+    activate API
+        API -> Service : DepartmentService.CreateAsync(Dto)
+        activate Service
+            Service -> DB : Check Name Exists
+            activate DB
+            DB --> Service : Result (Boolean)
+            deactivate DB
+            
+            alt Name Conflict
+                Service --> API : Result.Failure (Conflict)
+                API --> UI : 409 Conflict ("Department exists")
+            else Success
+                Service -> DB : AddAsync(Department)
+                activate DB
+                DB --> Service : Saved (Id)
+                deactivate DB
+                Service --> API : Result.Success
+                API --> UI : 201 Created
+            end
+        deactivate Service
+    deactivate API
+deactivate UI
+
+'=== MANAGE WORKERS ===
+== Manage Workers ==
+
+User -> UI : Register Worker (Name, DeptId, Email)
+activate UI
+    UI -> API : POST /api/v1/Workers
+    activate API
+        API -> Service : WorkerService.CreateAsync(Dto)
+        activate Service
+            Service -> DB : Check Email/Username Exists
+            activate DB
+            DB --> Service : Result
+            deactivate DB
+            
+            alt User Already Exists
+                Service --> API : Result.Failure (Conflict)
+                API --> UI : 409 Conflict ("Email taken")
+            else Success
+                Service -> DB : AddAsync(Worker)
+                activate DB
+                DB --> Service : Saved (Id)
+                deactivate DB
+                Service --> API : Result.Success
+                API --> UI : 201 Created
+                UI --> User : "Worker Registered"
+            end
+        deactivate Service
+    deactivate API
+deactivate UI
+
+'=== MANAGE VIOLATIONS ===
+== Manage Violations ==
+
+group Log New Violation
+    User -> UI : Log Violation (WorkerId, Type, Severity)
+    activate UI
+        UI -> API : POST /api/v1/Violations
+        activate API
+            API -> Service : ViolationService.CreateAsync(Dto)
+            activate Service
+                Service -> DB : Validate WorkerId Exists
+                activate DB
+                DB --> Service : Worker Entity
+                deactivate DB
+                
+                alt Worker Not Found
+                    Service --> API : Result.Failure (NotFound)
+                    API --> UI : 404 Not Found ("Worker ID Invalid")
+                else Success
+                    Service -> DB : AddAsync(Violation)
+                    activate DB
+                    DB --> Service : Saved (Id)
+                    deactivate DB
+                    Service --> API : Result.Success
+                    API --> UI : 201 Created
+                    UI --> User : "Violation Logged"
+                end
+            deactivate Service
+        deactivate API
+    deactivate UI
+end
+
+group Update Violation Status
+    User -> UI : Update Status (Id, NewStatus)
+    activate UI
+        UI -> API : PUT /api/v1/Violations/{id}
+        activate API
+            API -> Service : ViolationService.UpdateAsync(Dto)
+            activate Service
+                Service -> DB : Get Violation By Id
+                activate DB
+                DB --> Service : Violation Entity
+                deactivate DB
+                
+                alt Violation Not Found
+                    Service --> API : Result.Failure (NotFound)
+                    API --> UI : 404 Not Found
+                else Success
+                    Service -> DB : Update(Violation)
+                    activate DB
+                    DB --> Service : Saved
+                    deactivate DB
+                    Service --> API : Result.Success
+                    API --> UI : 204 No Content
+                end
+            deactivate Service
+        deactivate API
+    deactivate UI
+end
+
+'=== NOTIFICATIONS ===
+== Notifications ==
+
+User -> UI : Send Notification (WorkerId, Message)
+activate UI
+    UI -> API : POST /api/v1/Notifications
+    activate API
+        API -> Service : NotificationService.CreateAsync(Dto)
+        activate Service
+            Service -> DB : AddAsync(Notification)
+            activate DB
+            DB --> Service : Saved
+            deactivate DB
+            Service --> API : Result.Success
+        deactivate Service
+        API --> UI : 201 Created
+    deactivate API
+    UI --> User : "Notification Sent"
+deactivate UI
+
+
+@enduml
