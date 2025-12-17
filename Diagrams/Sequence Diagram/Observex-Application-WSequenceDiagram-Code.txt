@@ -1,0 +1,117 @@
+@startuml
+skinparam style strictuml
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+
+actor "Worker" as User
+participant "Mobile UI" as UI
+participant "API Controller" as API
+participant "Application Service" as Service
+database "Database (SQL)" as DB
+
+title Safety Vision: Worker Mobile Application Sequence
+
+'=== AUTHENTICATION ===
+== Authentication ==
+
+User -> UI : Open App & Login (Email, Password)
+activate UI
+    UI -> API : POST /api/v1/Auth/Login
+    activate API
+        API -> Service : Verify Worker Credentials
+        activate Service
+            Service -> DB : Query Worker (By Email)
+            activate DB
+            DB --> Service : Return Worker Entity
+            deactivate DB
+            
+            alt Credentials Valid
+                Service --> API : Result.Success (Token)
+                API --> UI : 200 OK (JWT)
+                UI --> User : Show Home Screen
+            else Invalid Credentials
+                Service --> API : Result.Failure
+                API --> UI : 401 Unauthorized
+                deactivate Service
+                UI --> User : Display Login Error
+            end
+    deactivate API
+deactivate UI
+
+'=== VIEW PROFILE ===
+== Profile Management ==
+
+User -> UI : Tap "View Profile"
+activate UI
+    UI -> API : GET /api/v1/Workers/me
+    activate API
+        API -> Service : GetWorkerProfile(currentUserId)
+        activate Service
+            Service -> DB : SELECT * FROM Users/Workers WHERE Id = userId
+            activate DB
+            DB --> Service : Worker Data
+            deactivate DB
+            Service --> API : Result.Success(Data)
+        deactivate Service
+        API --> UI : 200 OK (Worker Profile)
+    deactivate API
+    UI --> User : Display Profile Details
+deactivate UI
+
+'=== VIEW VIOLATIONS ===
+== Manage Violations (Worker View) ==
+
+User -> UI : Select "View My Violations"
+activate UI
+    UI -> API : GET /api/v1/Violations/my-violations
+    activate API
+        API -> Service : GetViolationsByWorker(workerId)
+        activate Service
+            Service -> DB : SELECT * FROM Violations WHERE WorkerId = id
+            activate DB
+            DB --> Service : List<Violation>
+            deactivate DB
+            Service --> API : Result.Success(List)
+        deactivate Service
+        API --> UI : 200 OK (List)
+    deactivate API
+    UI --> User : Display Violation List
+deactivate UI
+
+User -> UI : Select Specific Violation
+activate UI
+    UI -> API : GET /api/v1/Violations/{id}
+    activate API
+        API --> UI : 200 OK (Violation Details)
+    deactivate API
+    UI --> User : Show Violation Details (Type, Severity, Date)
+deactivate UI
+
+'=== NOTIFICATIONS ===
+== Notifications ==
+
+User -> UI : Open "Notifications"
+activate UI
+    UI -> API : GET /api/v1/Notifications/my-notifications
+    activate API
+        API -> Service : GetNotificationsForWorker(workerId)
+        activate Service
+            Service -> DB : SELECT * FROM Notifications WHERE ReceiverId = id
+            activate DB
+            DB --> Service : List<Notification>
+            deactivate DB
+            Service --> API : Result.Success
+        deactivate Service
+        API --> UI : 200 OK (Notification History)
+    deactivate API
+    UI --> User : Display Notification List
+deactivate UI
+
+User -> UI : Apply Filter (e.g., By Type)
+activate UI
+    UI -> UI : Filter Notifications locally or re-fetch
+    UI --> User : Display Filtered History
+deactivate UI
+
+@enduml
