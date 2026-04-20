@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
-using SafetyVision.Core.Interfaces;
-using SafetyVision.Infrastructure.Data;
+using Observex.Core.Interfaces;
+using Observex.Infrastructure.Data;
 
-namespace SafetyVision.Infrastructure.Repositories
+namespace Observex.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

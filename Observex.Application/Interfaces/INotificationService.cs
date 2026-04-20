@@ -1,9 +1,9 @@
-﻿using SafetyVision.Application.DTOs.Notifications;
-using SafetyVision.Core.Entities;
-using SafetyVision.Core.Enums;
-using SafetyVision.Core.Utils;
+﻿using Observex.Application.DTOs.Notifications;
+using Observex.Core.Entities;
+using Observex.Core.Enums;
+using Observex.Core.Utils;
 
-namespace SafetyVision.Application.Interfaces
+namespace Observex.Application.Interfaces
 {
     public interface INotificationService
     {

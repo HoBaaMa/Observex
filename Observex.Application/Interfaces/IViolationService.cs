@@ -1,7 +1,7 @@
-﻿using SafetyVision.Application.DTOs.Violations;
-using SafetyVision.Core.Utils;
+﻿using Observex.Application.DTOs.Violations;
+using Observex.Core.Utils;
 
-namespace SafetyVision.Application.Interfaces
+namespace Observex.Application.Interfaces
 {
     public interface IViolationService
     {

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SafetyVision.Infrastructure.Data;
+using Observex.Infrastructure.Data;
 
 #nullable disable
 
-namespace SafetyVision.Infrastructure.Migrations
+namespace Observex.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20251013130601_RemovingPasswordHashPropertyFromUser")]

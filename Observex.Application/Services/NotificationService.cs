@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using SafetyVision.Application.DTOs.Notifications;
-using SafetyVision.Application.Interfaces;
-using SafetyVision.Core.Entities;
-using SafetyVision.Core.Enums;
-using SafetyVision.Core.Interfaces;
-using SafetyVision.Core.Utils;
+using Observex.Application.DTOs.Notifications;
+using Observex.Application.Interfaces;
+using Observex.Core.Entities;
+using Observex.Core.Enums;
+using Observex.Core.Interfaces;
+using Observex.Core.Utils;
 
-namespace SafetyVision.Application.Services
+namespace Observex.Application.Services
 {
     public class NotificationService : INotificationService
     {

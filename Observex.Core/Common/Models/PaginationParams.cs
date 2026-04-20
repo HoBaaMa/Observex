@@ -1,4 +1,4 @@
-﻿namespace SafetyVision.Core.Common.Models
+﻿namespace Observex.Core.Common.Models
 {
     public class PaginationParams
     {

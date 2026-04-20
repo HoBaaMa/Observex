@@ -1,6 +1,6 @@
-﻿using SafetyVision.Core.Enums;
+﻿using Observex.Core.Enums;
 
-namespace SafetyVision.Core.Entities
+namespace Observex.Core.Entities
 {
     public class Notification
     {

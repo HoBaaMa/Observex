@@ -1,7 +1,7 @@
-﻿using SafetyVision.Core.Common.Models;
+﻿using Observex.Core.Common.Models;
 using System.Linq.Expressions;
 
-namespace SafetyVision.Core.Interfaces
+namespace Observex.Core.Interfaces
 {
     public interface IRepository<T> where T : class
     {

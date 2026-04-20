@@ -1,4 +1,4 @@
-﻿namespace SafetyVision.Application.DTOs.Departments
+﻿namespace Observex.Application.DTOs.Departments
 {
     public class DepartmentDto
     {

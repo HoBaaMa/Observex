@@ -1,10 +1,10 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using SafetyVision.Application.DTOs.Departments;
-using SafetyVision.Application.Interfaces;
-using SafetyVision.Core.Enums;
+using Observex.Application.DTOs.Departments;
+using Observex.Application.Interfaces;
+using Observex.Core.Enums;
 
-namespace SafetyVision.API.Controllers.v1
+namespace Observex.API.Controllers.v1
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]

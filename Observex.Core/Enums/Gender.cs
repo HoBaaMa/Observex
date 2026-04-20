@@ -1,4 +1,4 @@
-﻿namespace SafetyVision.Core.Enums
+﻿namespace Observex.Core.Enums
 {
     public enum Gender
     {

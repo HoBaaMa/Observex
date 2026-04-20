@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using SafetyVision.Application.DTOs.Departments;
-using SafetyVision.Core.Entities;
+using Observex.Application.DTOs.Departments;
+using Observex.Core.Entities;
 
-namespace SafetyVision.Application.Mappings
+namespace Observex.Application.Mappings
 {
     internal class DepartmentMappingProfile : Profile
     {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SafetyVision.Infrastructure.Migrations
+namespace Observex.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class UpdatingNotificationProprites : Migration

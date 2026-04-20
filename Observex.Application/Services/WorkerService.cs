@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using SafetyVision.Application.DTOs.Workers;
-using SafetyVision.Application.Interfaces;
-using SafetyVision.Core.Entities;
-using SafetyVision.Core.Enums;
-using SafetyVision.Core.Interfaces;
-using SafetyVision.Core.Utils;
+using Observex.Application.DTOs.Workers;
+using Observex.Application.Interfaces;
+using Observex.Core.Entities;
+using Observex.Core.Enums;
+using Observex.Core.Interfaces;
+using Observex.Core.Utils;
 
-namespace SafetyVision.Application.Services
+namespace Observex.Application.Services
 {
     public class WorkerService : IWorkerService
     {
@@ -112,7 +112,7 @@ namespace SafetyVision.Application.Services
             if (worker is null)
                 return Result.Failure(ErrorType.NotFound, $"Worker with ID '{id}' was not found.");
 
-            var existingUser = (await _unitOfWork.Workers.FindAsync(w => w.Username == dto.Username && w.Id != id, cancellationToken)).Any();
+            var existingUser = (await _unitOfWork.Workers.FindAsync(w => w.DisplayUserName == dto.Username && w.Id != id, cancellationToken)).Any();
             if (existingUser) 
                 return Result.Failure(ErrorType.Conflict, $"A worker with the username '{dto.Username}' already exists. Please choose a different username.");
 

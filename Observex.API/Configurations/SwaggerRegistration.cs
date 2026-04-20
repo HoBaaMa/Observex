@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning.ApiExplorer;
 using Microsoft.OpenApi.Models;
 
-namespace SafetyVision.API.Configurations
+namespace Observex.API.Configurations
 {
     public static class SwaggerRegistration
     {
@@ -14,7 +14,7 @@ namespace SafetyVision.API.Configurations
                 {
                     options.SwaggerDoc(description.GroupName, new OpenApiInfo
                     {
-                        Title = "Safety Vision API",
+                        Title = "Observex API",
                         Version = description.ApiVersion.ToString(),
                         Description = description.IsDeprecated ? " - DEPRECATED" : ""
                     });

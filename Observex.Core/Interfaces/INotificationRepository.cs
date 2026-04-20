@@ -1,7 +1,7 @@
-﻿using SafetyVision.Core.Entities;
-using SafetyVision.Core.Enums;
+﻿using Observex.Core.Entities;
+using Observex.Core.Enums;
 
-namespace SafetyVision.Core.Interfaces
+namespace Observex.Core.Interfaces
 {
     public interface INotificationRepository : IRepository<Notification>
     {

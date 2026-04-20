@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SafetyVision.Core.Entities;
-using SafetyVision.Core.Interfaces;
-using SafetyVision.Infrastructure.Data;
+using Observex.Core.Entities;
+using Observex.Core.Interfaces;
+using Observex.Infrastructure.Data;
 
-namespace SafetyVision.Infrastructure.Repositories
+namespace Observex.Infrastructure.Repositories
 {
     public class DepartmentRepository : Repository<Department>, IDepartmentRepository
     {

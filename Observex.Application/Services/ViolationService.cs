@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using SafetyVision.Application.DTOs.Violations;
-using SafetyVision.Application.Interfaces;
-using SafetyVision.Core.Entities;
-using SafetyVision.Core.Interfaces;
-using SafetyVision.Core.Utils;
-using SafetyVision.Core.Enums;
+using Observex.Application.DTOs.Violations;
+using Observex.Application.Interfaces;
+using Observex.Core.Entities;
+using Observex.Core.Interfaces;
+using Observex.Core.Utils;
+using Observex.Core.Enums;
 
-namespace SafetyVision.Application.Services
+namespace Observex.Application.Services
 {
     public class ViolationService : IViolationService
     {

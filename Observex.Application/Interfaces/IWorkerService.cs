@@ -1,8 +1,8 @@
-﻿using SafetyVision.Application.DTOs.Workers;
-using SafetyVision.Core.Entities;
-using SafetyVision.Core.Utils;
+﻿using Observex.Application.DTOs.Workers;
+using Observex.Core.Entities;
+using Observex.Core.Utils;
 
-namespace SafetyVision.Application.Interfaces
+namespace Observex.Application.Interfaces
 {
     public interface IWorkerService
     {

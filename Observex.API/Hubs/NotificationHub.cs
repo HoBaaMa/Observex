@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace SafetyVision.API.Hubs
+namespace Observex.API.Hubs
 {
     public class NotificationHub : Hub
     {

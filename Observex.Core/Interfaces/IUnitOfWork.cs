@@ -1,4 +1,4 @@
-﻿namespace SafetyVision.Core.Interfaces
+﻿namespace Observex.Core.Interfaces
 {
     public interface IUnitOfWork
     {

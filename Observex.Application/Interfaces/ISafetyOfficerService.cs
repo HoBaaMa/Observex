@@ -1,7 +1,7 @@
-﻿using SafetyVision.Application.DTOs.SafetyOfficers;
-using SafetyVision.Core.Utils;
+﻿using Observex.Application.DTOs.SafetyOfficers;
+using Observex.Core.Utils;
 
-namespace SafetyVision.Application.Interfaces
+namespace Observex.Application.Interfaces
 {
     public interface ISafetyOfficerService
     {

@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SafetyVision.Core.Interfaces;
-using SafetyVision.Infrastructure.Data;
+using Observex.Core.Interfaces;
+using Observex.Infrastructure.Data;
 using System.Linq.Expressions;
-using System.Threading;
 
-namespace SafetyVision.Infrastructure.Repositories
+namespace Observex.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {

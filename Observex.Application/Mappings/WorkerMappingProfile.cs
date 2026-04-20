@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using SafetyVision.Application.DTOs.Workers;
-using SafetyVision.Core.Entities;
+using Observex.Application.DTOs.Workers;
+using Observex.Core.Entities;
 
-namespace SafetyVision.Application.Mappings
+namespace Observex.Application.Mappings
 {
     internal class WorkerMappingProfile : Profile
     {

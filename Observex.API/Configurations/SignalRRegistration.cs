@@ -1,4 +1,4 @@
-﻿namespace SafetyVision.API.Configurations
+﻿namespace Observex.API.Configurations
 {
     public static class SignalRRegistration
     {

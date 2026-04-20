@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SafetyVision.Core.Interfaces;
-using SafetyVision.Infrastructure.Data;
-using SafetyVision.Infrastructure.Repositories;
+using Observex.Core.Interfaces;
+using Observex.Infrastructure.Data;
+using Observex.Infrastructure.Repositories;
 
-namespace SafetyVision.Infrastructure.Utils
+namespace Observex.Infrastructure.Utils
 {
     public static class InfrastructureServiceRegistration
     {

@@ -1,4 +1,4 @@
-﻿namespace SafetyVision.Core.Entities
+﻿namespace Observex.Core.Entities
 {
     public class Department
     {

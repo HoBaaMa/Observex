@@ -1,9 +1,9 @@
-﻿using SafetyVision.Core.Common.Models;
+﻿using Observex.Core.Common.Models;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 
-namespace SafetyVision.Core.Common.Helpers
+namespace Observex.Core.Common.Helpers
 {
     public static class QueryableExtensions
     {

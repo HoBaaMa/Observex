@@ -1,6 +1,6 @@
-﻿using SafetyVision.Core.Entities;
+﻿using Observex.Core.Entities;
 
-namespace SafetyVision.Core.Interfaces
+namespace Observex.Core.Interfaces
 {
     public interface ISafetyOfficerRepository : IRepository<SafetyOfficer>
     {

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using SafetyVision.Application.DTOs.SafetyOfficers;
-using SafetyVision.Application.Interfaces;
-using SafetyVision.Core.Entities;
-using SafetyVision.Core.Enums;
-using SafetyVision.Core.Interfaces;
-using SafetyVision.Core.Utils;
+using Observex.Application.DTOs.SafetyOfficers;
+using Observex.Application.Interfaces;
+using Observex.Core.Entities;
+using Observex.Core.Enums;
+using Observex.Core.Interfaces;
+using Observex.Core.Utils;
 
-namespace SafetyVision.Application.Services
+namespace Observex.Application.Services
 {
     public class SafetyOfficerService : ISafetyOfficerService
     {
@@ -21,7 +21,7 @@ namespace SafetyVision.Application.Services
 
         public async Task<Result<SafetyOfficerDto>> CreateAsync(PostSafetyOfficerDto dto, CancellationToken cancellationToken = default)
         {
-            var existingUser = (await _unitOfWork.SafetyOfficers.FindAsync(so => so.Username == dto.Username)).Any();
+            var existingUser = (await _unitOfWork.SafetyOfficers.FindAsync(so => so.DisplayUserName == dto.Username)).Any();
             if (existingUser)
                 return Result<SafetyOfficerDto>.Failure(ErrorType.Conflict, $"Username: {dto.Username} already exists.");
 
@@ -102,7 +102,7 @@ namespace SafetyVision.Application.Services
                 return Result.Failure(ErrorType.NotFound, $"Safety officer with ID: {id} not found.");
 
             // Check if username is taken by another user (exclude self)
-            var existingUser = (await _unitOfWork.SafetyOfficers.FindAsync(so => so.Username == dto.Username && so.Id != id)).Any();
+            var existingUser = (await _unitOfWork.SafetyOfficers.FindAsync(so => so.DisplayUserName == dto.Username && so.Id != id)).Any();
             if (existingUser)
                 return Result<SafetyOfficerDto>.Failure(ErrorType.Conflict, $"Username {dto.Username} already exists.");
 

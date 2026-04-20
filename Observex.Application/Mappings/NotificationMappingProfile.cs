@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using SafetyVision.Application.DTOs.Notifications;
-using SafetyVision.Core.Entities;
-namespace SafetyVision.Application.Mappings
+using Observex.Application.DTOs.Notifications;
+using Observex.Core.Entities;
+namespace Observex.Application.Mappings
 {
     internal class NotificationMappingProfile : Profile
     {

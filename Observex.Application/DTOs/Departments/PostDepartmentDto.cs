@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SafetyVision.Application.DTOs.Departments
+namespace Observex.Application.DTOs.Departments
 {
     public class PostDepartmentDto
     {

@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SafetyVision.Core.Entities;
-using SafetyVision.Infrastructure.Data.Seeders;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Observex.Core.Identity;
+using Observex.Core.Entities;
+using Observex.Infrastructure.Data.Seeders;
 
-namespace SafetyVision.Infrastructure.Data
+namespace Observex.Infrastructure.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -21,6 +23,9 @@ namespace SafetyVision.Infrastructure.Data
 
             // Seeding Departments
             DepartmentSeeder.SeedDepartments(modelBuilder);
+
+            // Seeding Roles
+            RoleSeeder.SeedRoles(modelBuilder);
         }
     }
 }

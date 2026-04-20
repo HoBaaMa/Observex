@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SafetyVision.Core.Entities;
+using Observex.Core.Entities;
 
-namespace SafetyVision.Infrastructure.Data.Configurations
+namespace Observex.Infrastructure.Data.Configurations
 {
     internal class SafetyOfficerConfiguration : IEntityTypeConfiguration<SafetyOfficer>
     {
@@ -10,11 +10,11 @@ namespace SafetyVision.Infrastructure.Data.Configurations
         {
             builder.HasKey(so => so.Id);
 
-            builder.Property(so => so.Username)
+            builder.Property(so => so.DisplayUserName)
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.HasIndex(so => so.Username)
+            builder.HasIndex(so => so.DisplayUserName)
                 .IsUnique();
 
             builder.Property(so => so.FullName)

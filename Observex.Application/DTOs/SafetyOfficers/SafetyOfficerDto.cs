@@ -1,4 +1,4 @@
-﻿namespace SafetyVision.Application.DTOs.SafetyOfficers
+﻿namespace Observex.Application.DTOs.SafetyOfficers
 {
     public class SafetyOfficerDto
     {

@@ -1,6 +1,6 @@
-﻿using SafetyVision.Core.Enums;
+﻿using Observex.Core.Enums;
 
-namespace SafetyVision.Application.DTOs.Notifications
+namespace Observex.Application.DTOs.Notifications
 {
     public class NotificationDto
     {

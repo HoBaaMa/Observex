@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SafetyVision.Core.Entities;
+using Observex.Core.Entities;
 
-namespace SafetyVision.Infrastructure.Data.Configurations
+namespace Observex.Infrastructure.Data.Configurations
 {
     internal class NotificationConfiguration : IEntityTypeConfiguration<Notification>
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SafetyVision.Core.Entities;
+using Observex.Core.Entities;
 
-namespace SafetyVision.Infrastructure.Data.Configurations
+namespace Observex.Infrastructure.Data.Configurations
 {
     internal class WorkerConfiguration : IEntityTypeConfiguration<Worker>
     {
@@ -10,11 +10,11 @@ namespace SafetyVision.Infrastructure.Data.Configurations
         {
             builder.HasKey(w => w.Id);
 
-            builder.Property(w => w.Username)
+            builder.Property(w => w.DisplayUserName)
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.HasIndex(w => w.Username)
+            builder.HasIndex(w => w.DisplayUserName)
                 .IsUnique();
 
             builder.Property(w => w.FullName)

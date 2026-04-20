@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SafetyVision.Core.Entities;
-using SafetyVision.Core.Interfaces;
-using SafetyVision.Infrastructure.Data;
+using Observex.Core.Entities;
+using Observex.Core.Interfaces;
+using Observex.Infrastructure.Data;
 
-namespace SafetyVision.Infrastructure.Repositories
+namespace Observex.Infrastructure.Repositories
 {
     public class SafetyOfficerRepository : Repository<SafetyOfficer>, ISafetyOfficerRepository
     {
@@ -13,6 +13,6 @@ namespace SafetyVision.Infrastructure.Repositories
 
         public async Task<SafetyOfficer?> GetByNameAsync(string name) => await _context.SafetyOfficers.FirstOrDefaultAsync(so => so.FullName.Contains(name));
 
-        public async Task<SafetyOfficer?> GetByUserNameAsync(string username) => await _context.SafetyOfficers.FirstOrDefaultAsync(so => so.Username == username);
+        public async Task<SafetyOfficer?> GetByUserNameAsync(string username) => await _context.SafetyOfficers.FirstOrDefaultAsync(so => so.DisplayUserName == username);
     }
 }

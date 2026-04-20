@@ -1,7 +1,7 @@
-﻿using SafetyVision.Core.Entities;
+﻿using Observex.Core.Entities;
 using System.Threading;
 
-namespace SafetyVision.Core.Interfaces
+namespace Observex.Core.Interfaces
 {
     public interface IWorkerRepository : IRepository<Worker>
     {

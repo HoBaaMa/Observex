@@ -1,6 +1,6 @@
-﻿using SafetyVision.Core.Enums;
+﻿using Observex.Core.Enums;
 
-namespace SafetyVision.Core.Utils
+namespace Observex.Core.Utils
 {
     public class Result
     {

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using SafetyVision.Core.Enums;
+using Observex.Core.Enums;
 
-namespace SafetyVision.Application.DTOs.Violations
+namespace Observex.Application.DTOs.Violations
 {
     public class PostAddViolationDto
     {

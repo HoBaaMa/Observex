@@ -1,8 +1,12 @@
 using Asp.Versioning.ApiExplorer;
-using SafetyVision.Application.DependencyInjection;
-using SafetyVision.API.Configurations;
-using SafetyVision.Infrastructure.Utils;
-using SafetyVision.API.Hubs;
+using Observex.Application.DependencyInjection;
+using Observex.API.Configurations;
+using Observex.Infrastructure.Utils;
+using Observex.API.Hubs;
+using Observex.Core.Identity;
+using Observex.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +21,20 @@ builder.Services
     .AddInfrastructureServices(builder.Configuration)
     .AddApplicationServices()
     .AddSignalRService()
-    .AddNotificationHubService();
+    .AddNotificationHubService()
+    .AddIdentity<ApplicationUser, ApplicationRole>(op =>
+    {
+        op.Password.RequiredLength = 6;
+        op.Password.RequireNonAlphanumeric = false;
+        op.Password.RequireUppercase = false;
+        op.Password.RequireLowercase = true;
+        op.Password.RequireDigit = true;
+    })
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders()
+    .AddUserStore<UserStore<ApplicationUser, ApplicationRole, AppDbContext, Guid>>()
+    .AddRoleStore<RoleStore<ApplicationRole, AppDbContext, Guid>>();
+
 //builder.Services.AddApplicationServices();
 
 var app = builder.Build();
@@ -34,16 +51,20 @@ if (app.Environment.IsDevelopment())
         {
             options.SwaggerEndpoint(
                 $"swagger/{description.GroupName}/swagger.json",
-                $"Safety Vision API {description.GroupName.ToUpperInvariant()}");
+                $"Observex API {description.GroupName.ToUpperInvariant()}");
         };
         options.RoutePrefix = string.Empty; // Set Swagger UI at the app's root
     });
 }
 
 app.UseRouting();
+app.UseCors();
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.MapControllers();
 

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SafetyVision.Application.Interfaces;
-using SafetyVision.Application.Services;
+using Observex.Application.Interfaces;
+using Observex.Application.Services;
 using System.Reflection;
 
-namespace SafetyVision.Application.DependencyInjection
+namespace Observex.Application.DependencyInjection
 {
     public static class ApplicationServiceRegistration
     {

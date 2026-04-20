@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using SafetyVision.Application.DTOs.Violations;
-using SafetyVision.Core.Entities;
+using Observex.Application.DTOs.Violations;
+using Observex.Core.Entities;
 
-namespace SafetyVision.Application.Mappings
+namespace Observex.Application.Mappings
 {
     internal class ViolationMappingProfile : Profile
     {

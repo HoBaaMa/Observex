@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using SafetyVision.API.Hubs;
-using SafetyVision.Core.Interfaces;
+using Observex.API.Hubs;
+using Observex.Core.Interfaces;
 
-namespace SafetyVision.API.Services
+namespace Observex.API.Services
 {
     public class NotificationHubService : INotificationHubService
     {

@@ -1,8 +1,8 @@
-﻿using SafetyVision.Core.Enums;
+﻿using Observex.Core.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace SafetyVision.Application.DTOs.Workers
+namespace Observex.Application.DTOs.Workers
 {
     public class PostWorkerDto
     {

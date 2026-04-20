@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SafetyVision.Core.Entities;
+using Observex.Core.Entities;
 
-namespace SafetyVision.Infrastructure.Data.Seeders
+namespace Observex.Infrastructure.Data.Seeders
 {
     internal class DepartmentSeeder
     {

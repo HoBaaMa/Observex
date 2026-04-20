@@ -1,7 +1,7 @@
-﻿using SafetyVision.Core.Entities;
-using SafetyVision.Core.Enums;
+﻿using Observex.Core.Entities;
+using Observex.Core.Enums;
 
-namespace SafetyVision.Application.DTOs.Workers
+namespace Observex.Application.DTOs.Workers
 {
     public class WorkerDto
     {

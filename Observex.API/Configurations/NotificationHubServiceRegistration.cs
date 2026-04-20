@@ -1,7 +1,7 @@
-﻿using SafetyVision.API.Services;
-using SafetyVision.Core.Interfaces;
+﻿using Observex.API.Services;
+using Observex.Core.Interfaces;
 
-namespace SafetyVision.API.Configurations
+namespace Observex.API.Configurations
 {
     public static class NotificationHubServiceRegistration
     {
