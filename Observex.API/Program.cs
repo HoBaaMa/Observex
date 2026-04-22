@@ -7,6 +7,8 @@ using Observex.Core.Identity;
 using Observex.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Observex.Application.Interfaces;
+using Observex.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,8 @@ builder.Services
     .AddDefaultTokenProviders()
     .AddUserStore<UserStore<ApplicationUser, ApplicationRole, AppDbContext, Guid>>()
     .AddRoleStore<RoleStore<ApplicationRole, AppDbContext, Guid>>();
+
+builder.Services.AddTransient<IJwtService, JwtService>();
 
 //builder.Services.AddApplicationServices();
 

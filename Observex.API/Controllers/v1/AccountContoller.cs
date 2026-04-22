@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Observex.Application.DTOs.Identity;
+using Observex.Application.Interfaces;
 using Observex.Core.Identity;
 
 namespace Observex.API.Controllers.v1
@@ -16,14 +17,16 @@ namespace Observex.API.Controllers.v1
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IJwtService _jwtService;
 
         public AccountContoller(UserManager<ApplicationUser> userManager,
             RoleManager<ApplicationRole> roleManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager, IJwtService jwtService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
+            _jwtService = jwtService;
         }
 
         [HttpPost("register")]
@@ -52,14 +55,14 @@ namespace Observex.API.Controllers.v1
             {
                 await _userManager.AddToRoleAsync(user, "worker");
                 await _signInManager.SignInAsync(user, isPersistent: false);
+                AuthenticationResponseDto authenticationResponse = _jwtService.GenerateJwtToken(user);
+                return Ok(authenticationResponse);
             }
             else
             {
                 string errorMessages = String.Join(", ", result.Errors.Select(e => e.Description));
                 return Problem($"Failed to register user: {errorMessages}");
             }
-
-            return Ok(user);
         }
 
         [HttpGet]
@@ -96,7 +99,10 @@ namespace Observex.API.Controllers.v1
                     return NoContent();
                 }
 
-                return Ok(new { FullName = user.FullName, Username = user.UserName });
+                AuthenticationResponseDto authenticationResponse = _jwtService.GenerateJwtToken(user);
+                return Ok(authenticationResponse);
+
+                //return Ok(new { FullName = user.FullName, Username = user.UserName });
             }
             else
             {
